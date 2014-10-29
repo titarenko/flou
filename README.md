@@ -15,38 +15,40 @@ npm install flou --save
 ## Example 
 
 ```js
-	var saveOrderPromise = new Flow({ order: someOrder })
+var Flow = require('flou');
 
-		.having('order')
-		.run(findCountry, findRegionAndTimezone, findOperator, findOffer)
-		
-		.having('country', 'regionAndTimezone')
-		.run(createClientRecord)
+var saveOrderPromise = new Flow({ order: someOrder })
 
-		.having('clientRecord', 'offer')
-		.run(createOrderRecord)
+	.having('order')
+	.run(findCountry, findRegionAndTimezone, findOperator, findOffer)
+	
+	.having('country', 'regionAndTimezone')
+	.run(createClientRecord)
 
-		.having('country')
-		.run(findShipmentMethod)
+	.having('clientRecord', 'offer')
+	.run(createOrderRecord)
 
-		.having('country', 'shipmentMethod', 'orderRecord')
-		.run(createOrderShipmentRecord)
+	.having('country')
+	.run(findShipmentMethod)
 
-		.having('operator', 'orderRecord')
-		.run(createOrderCallRecord)
+	.having('country', 'shipmentMethod', 'orderRecord')
+	.run(createOrderShipmentRecord)
 
-		.having('orderShipmentRecord', 'orderCallRecord')
-		.run(updateOrderRecord)
-		.returning('updatedOrderRecord')
+	.having('operator', 'orderRecord')
+	.run(createOrderCallRecord)
 
-		.having('updatedOrderRecord')
-		.finish();
+	.having('orderShipmentRecord', 'orderCallRecord')
+	.run(updateOrderRecord)
+	.returning('updatedOrderRecord')
 
-	saveOrderPromise.done(function (context) {
-		console.log('Hooray! I have passed all steps of the specified flow! Id of order is', context.order.id);
-	}, function (error) {
-		console.error('Oh no! Flow was interrupted due to', error && error.stack || error);
-	});
+	.having('updatedOrderRecord')
+	.finish();
+
+saveOrderPromise.done(function (context) {
+	console.log('Hooray! I have passed all steps of the specified flow! Id of order is', context.order.id);
+}, function (error) {
+	console.error('Oh no! Flow was interrupted due to', error && error.stack || error);
+});
 ```
 
 ## API
