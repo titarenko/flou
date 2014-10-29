@@ -1,0 +1,33 @@
+{
+  "name": "flou",
+  "version": "0.1.0",
+  "description": "Simple construction of complex flows.",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=testing node ./node_modules/istanbul/lib/cli cover ./node_modules/mocha/bin/_mocha -- -R spec tests --recursive && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/titarenko/flou.git"
+  },
+  "keywords": [
+    "flow",
+    "promise"
+  ],
+  "author": "Constantin Titarenko",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/titarenko/flou/issues"
+  },
+  "homepage": "https://github.com/titarenko/flou",
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "q": "^1.0.1"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.2",
+    "mocha": "^2.0.1",
+    "should": "^4.1.0"
+  }
+}
